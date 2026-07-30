@@ -19,6 +19,37 @@ export const rooms: Room[] = [
   { id: 'r6', name: 'Auditório', capacity: 20, status: 'reservada', occupant: 'Workshop UX (18:00)', monthlyOccupancyRate: 29 },
 ]
 
+export type WorkstationStatus = 'livre' | 'ocupada'
+
+export interface Workstation {
+  id: string
+  number: number
+  status: WorkstationStatus
+  occupant?: string
+}
+
+const occupantPool = [
+  'Camila Duarte', 'Rafael Prado', 'Beatriz Nogueira', 'Lucas Andrade',
+  'Fernanda Melo', 'Thiago Cardoso', 'Juliana Rocha', 'Marcelo Vieira',
+  'Patrícia Lima',
+]
+
+export const workstations: Workstation[] = Array.from({ length: 24 }, (_, i) => {
+  const number = i + 1
+  const isOccupied = [1, 2, 3, 5, 6, 8, 9, 11, 14, 15, 18, 20, 21, 23].includes(number)
+  return {
+    id: `w${number}`,
+    number,
+    status: isOccupied ? 'ocupada' : 'livre',
+    occupant: isOccupied ? occupantPool[number % occupantPool.length] : undefined,
+  }
+})
+
+export const workstationsSummary = {
+  total: workstations.length,
+  available: workstations.filter((w) => w.status === 'livre').length,
+}
+
 export interface RevenuePoint {
   day: number
   value: number

@@ -1,4 +1,5 @@
 import { RoomOccupancyWidget } from './components/RoomOccupancyWidget'
+import { WorkstationsWidget } from './components/WorkstationsWidget'
 import { RevenueWidget } from './components/RevenueWidget'
 import { AgendaWidget } from './components/AgendaWidget'
 import { ActiveClientsWidget } from './components/ActiveClientsWidget'
@@ -15,6 +16,7 @@ function App() {
       </div>
       <div className="grid">
         <RoomOccupancyWidget />
+        <WorkstationsWidget />
         <RevenueWidget />
         <AgendaWidget />
         <ActiveClientsWidget />
