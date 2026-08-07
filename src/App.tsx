@@ -8,17 +8,27 @@ import { OccupancyRateWidget } from './components/OccupancyRateWidget'
 import { ReviewsWidget } from './components/ReviewsWidget'
 import { IdleHoursWidget } from './components/IdleHoursWidget'
 import { BookingFlow } from './components/booking/BookingFlow'
+import { LandingPage } from './components/landing/LandingPage'
 
-type View = 'dashboard' | 'booking'
+type View = 'home' | 'dashboard' | 'booking'
+
+const titles: Record<View, string> = {
+  home: '',
+  dashboard: ' — Painel geral',
+  booking: ' — Agendamento',
+}
 
 function App() {
-  const [view, setView] = useState<View>('dashboard')
+  const [view, setView] = useState<View>('home')
 
   return (
     <div className="dashboard">
       <div className="dashboard-header">
-        <h1>Coworking Hub{view === 'dashboard' ? ' — Painel geral' : ' — Agendamento'}</h1>
+        <h1>Coworking Hub{titles[view]}</h1>
         <nav className="view-tabs">
+          <button className={view === 'home' ? 'active' : ''} onClick={() => setView('home')}>
+            Início
+          </button>
           <button className={view === 'dashboard' ? 'active' : ''} onClick={() => setView('dashboard')}>
             Painel geral
           </button>
@@ -28,7 +38,9 @@ function App() {
         </nav>
       </div>
 
-      {view === 'dashboard' ? (
+      {view === 'home' && <LandingPage onNavigate={setView} />}
+
+      {view === 'dashboard' && (
         <div className="grid">
           <RoomOccupancyWidget />
           <WorkstationsWidget />
@@ -39,9 +51,9 @@ function App() {
           <ReviewsWidget />
           <IdleHoursWidget />
         </div>
-      ) : (
-        <BookingFlow />
       )}
+
+      {view === 'booking' && <BookingFlow />}
     </div>
   )
 }
