@@ -24,7 +24,7 @@ export function LandingPage({ view, onNavigate }: LandingPageProps) {
           <nav className="modern-nav">
             <div className="modern-logo">
               <span className="modern-logo-mark" />
-              Coworking Hub
+              Focus Business Hub
             </div>
             <div className="modern-tabs">
               <button className={view === 'home' ? 'active' : ''} onClick={() => onNavigate('home')}>

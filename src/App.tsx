@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="dashboard">
       <div className="dashboard-header">
-        <h1>Coworking Hub{titles[view]}</h1>
+        <h1>Focus Business Hub{titles[view]}</h1>
         <nav className="view-tabs">
           <button onClick={() => setView('home')}>Início</button>
           <button className={view === 'dashboard' ? 'active' : ''} onClick={() => setView('dashboard')}>
