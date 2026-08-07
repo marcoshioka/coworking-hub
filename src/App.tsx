@@ -21,14 +21,16 @@ const titles: Record<View, string> = {
 function App() {
   const [view, setView] = useState<View>('home')
 
+  if (view === 'home') {
+    return <LandingPage view={view} onNavigate={setView} />
+  }
+
   return (
     <div className="dashboard">
       <div className="dashboard-header">
         <h1>Coworking Hub{titles[view]}</h1>
         <nav className="view-tabs">
-          <button className={view === 'home' ? 'active' : ''} onClick={() => setView('home')}>
-            Início
-          </button>
+          <button onClick={() => setView('home')}>Início</button>
           <button className={view === 'dashboard' ? 'active' : ''} onClick={() => setView('dashboard')}>
             Painel geral
           </button>
@@ -37,8 +39,6 @@ function App() {
           </button>
         </nav>
       </div>
-
-      {view === 'home' && <LandingPage onNavigate={setView} />}
 
       {view === 'dashboard' && (
         <div className="grid">
